@@ -1,7 +1,7 @@
 <?php
  session_start();  
- require "./db.php";
- if (!isset($_SESSION["email"]) && isset($_SESSION["role"]) != 2 || $_SESSION["verified"] == false ) {
+ require "../db.php";
+ if (!isset($_SESSION["email"]) && isset($_SESSION["role"]) != 1 ) {
 	echo "<script>window.location.href = 'capture.php';</script>";
 	exit; 
   } else {
@@ -37,10 +37,10 @@
 </head>
 
 <body class="sb-nav-fixed">
-	<?php include 'includes/navbar.php'; ?>
+	<?php include '../includes/navbar.php'; ?>
 	<div id="layoutSidenav">
 
-		<?php include 'includes/sidebar.php'; ?>
+		<?php include '../includes/admin-sidebar.php'; ?>
 
 		<div id="layoutSidenav_content">
 			<main>
@@ -49,7 +49,7 @@
 						<div class="sb-page-header-content py-5">
 							<h1 class="sb-page-header-title">
 								<div class="sb-page-header-icon"><i data-feather="activity"></i></div>
-								<span>Dashboard</span>
+								<span>Admin Dashboard</span>
 							</h1>
 						</div>
 					</div>
@@ -58,36 +58,27 @@
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-success text-white mb-4">
-								<div class="card-body">Available Exams</div>
+								<div class="card-body">Students</div>
 								<div class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="exams/index.php">View</a>
+									<a class="small text-white stretched-link" href="/admin/students.php">View</a>
 									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-warning text-white mb-4">
-								<div class="card-body">Upcoming Exams</div>
+								<div class="card-body">Courses</div>
 								<div class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View</a>
+									<a class="small text-white stretched-link" href="/admin/courses.php">View</a>
 									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-danger text-white mb-4">
-								<div class="card-body">Cancelled Exams</div>
+								<div class="card-body">Questions</div>
 								<div class="card-footer d-flex align-items-center justify-content-between">
 									<a class="small text-white stretched-link" href="#">View</a>
-									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-secondary text-white mb-4">
-								<div class="card-body">Grades</div>
-								<div class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="/grades.php">View</a>
 									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 								</div>
 							</div>
@@ -98,15 +89,16 @@
 					</div>
 				</div>
 			</main>
-			<?php include 'includes/footer.php'; ?>
+			<?php include '../includes/footer.php'; ?>
 		</div>
 	</div>
 
 
 	<script src="/js/jquery.js" crossorigin="anonymous"></script>
-	<script src="/js/boostrap.js" crossorigin="anonymous">
-	</script>
+	<script src="/js/boostrap.js" crossorigin="anonymous"></script>
 	<script src="/js/scripts.js"></script>
+	<script src="/js/sweet-alert.js"></script>
+	<script src="/js/polyfill.js"></script>
 </body>
 
 </html>

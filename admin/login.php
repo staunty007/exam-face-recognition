@@ -1,7 +1,7 @@
 <?php
  session_start();  
- require "./db.php";
- if (isset($_SESSION["email"])) {
+ require "../db.php";
+ if (isset($_SESSION["email"]) && isset($_SESSION['role']) == 1) {
 	echo "<script>window.location.href = 'dashboard.php';</script>";
 	exit; 
   } else {
@@ -16,11 +16,11 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title>UpTime Tech</title>
-	<link href="css/styles.css" rel="stylesheet" />
+	<link href="/css/styles.css" rel="stylesheet" />
 	<link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
 	<script data-search-pseudo-elements defer
-		src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous">
+		src="/js/font-awesome.js" crossorigin="anonymous"></script>
+	<script src="/js/feather.min.js" crossorigin="anonymous">
 	</script>
 	<link
 		href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap"
@@ -39,7 +39,7 @@
 						<div class="col-lg-5">
 							<div class="card shadow-lg border-0 rounded-lg mt-5">
 								<div class="card-header justify-content-center bg-gray-500">
-									<img src="./images/student.png" style="border: 1px solid grey;border-radius: 50%;"
+									<img src="/images/student.png" style="border: 1px solid grey;border-radius: 50%;"
 										width="60" height="60" class="img-rounded" alt="">
 								</div>
 								<div class="card-body">
@@ -69,7 +69,7 @@
 								<div class="card-footer text-center">
 									<div class="small text-muted">
 										<p>Uptime Technology Examination</p>
-										<a href="/register.php" class="">Register</a>
+										<p>Admin Login</p>
 									</div>
 								</div>
 							</div>
@@ -93,10 +93,11 @@
 			</footer>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-	</script>
-	<script src="js/scripts.js"></script>
+	<script src="/js/jquery.js" crossorigin="anonymous"></script>
+	<script src="/js/boostrap.js" crossorigin="anonymous"></script>
+	<script src="/js/scripts.js"></script>
+	<script src="/js/sweet-alert.js"></script>
+	<script src="/js/polyfill.js"></script>
 	<script>
 		$(document).ready(function () {
 			let email;
@@ -117,7 +118,7 @@
 					return;
 				}
 
-				$.post("api/login.php", {
+				$.post("/api/admin-login.php", {
 						email: email,
 						password: password
 					})
@@ -127,7 +128,7 @@
 							$(this).html("LOGIN")
 							$("#success").html(data.success);
 							setTimeout(() => {
-								location.href = "capture.php";
+								location.href = "/admin/dashboard.php";
 							}, 3000);
 						} else {
 							$("#loginBtn").html("LOGIN")

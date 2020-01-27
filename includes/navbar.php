@@ -25,7 +25,7 @@
 					<a class="dropdown-item" href="#">
 						<div class="sb-dropdown-item-icon"><i data-feather="settings"></i></div>
 						Profile
-					</a><a class="dropdown-item" href="logout.php">
+					</a><a class="dropdown-item" href="/logout.php">
 						<div class="sb-dropdown-item-icon"><i data-feather="log-out"></i></div>
 						Logout
 					</a>

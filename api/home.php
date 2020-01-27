@@ -2,14 +2,15 @@
 session_start();  
 require '../vendor/autoload.php';
 require '../db.php';
+require '../keys.php';
 
 $args = [
     'credentials' => [
-        'key' => 'AKIAX5XHO6I6ADDLVVTV',
-        'secret' => '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',  
+        'key' => API_KEY,
+        'secret' => SECRET,
     ],
-    'region' => 'us-east-1',
-    'version' => 'latest'
+    'region' => REGION,
+    'version' => VERSION
 ];
 
 $client = new Aws\Rekognition\RekognitionClient($args);
@@ -34,6 +35,8 @@ if (count($result['UnmatchedFaces']) > 0) {
     $_SESSION['verified'] = true;
     $newResult = $result['FaceMatches'][0];
     echo json_encode(['success' => $newResult], JSON_PRETTY_PRINT);
+} else {
+    echo json_encode(['error' => 'Recognition Technical Error. Retry..'], JSON_PRETTY_PRINT);
 }
 
 // print_r($result);

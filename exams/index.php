@@ -1,8 +1,8 @@
 <?php
  session_start();  
  require $_SERVER['DOCUMENT_ROOT'] ."/db.php";
- if (!isset($_SESSION["username"]) || $_SESSION["verified"] == false) {
-	echo "<script>window.location.href = 'capture.php';</script>";
+ if (!isset($_SESSION["email"]) || $_SESSION["verified"] == false) {
+	echo "<script>window.location.href = '/capture.php';</script>";
 	exit; 
   } else {
 ?>
@@ -21,8 +21,8 @@
 		crossorigin="anonymous" />
 	<link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
 	<script data-search-pseudo-elements defer
-		src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous">
+		src="/js/font-awesome.js" crossorigin="anonymous"></script>
+	<script src="/js/feather.min.js" crossorigin="anonymous">
 	</script>
 	<link
 		href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap"
@@ -56,12 +56,12 @@
 						</div>
 					</div>
 				</div>
-				<div class="container-fluid mt-n10">
+				<div class="container-fluid mt-n10 d-none" id="displayExam">
 					<div class="row" v-if="loadedExam">
 						<div class="col-md-4" v-for="exam in exams" :key="exam.id">
 							<div class="card">
 								<div class="row no-gutters">
-									<div class="col-md-4"><img class="img-fluid" src="/2.jpg" alt="..."></div>
+									<div class="col-md-4"><img class="img-fluid" src="http://vancouverunitarians.ca/ucv/wp-content/uploads/2019/01/books-icon.png" alt="..."></div>
 									<div class="col-md-8">
 										<div class="card-body">
 											<h5 class="card-title">{{ exam.name }}</h5>
@@ -83,13 +83,9 @@
 	</div>
 
 
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-	</script>
+	<script src="/js/jquery.js" crossorigin="anonymous"></script>
+	<script src="/js/boostrap.js" crossorigin="anonymous"></script>
 	<script src="/js/scripts.js"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-	<script src="assets/demo/datatables-demo.js"></script>
 	<script src="/js/axios.js"></script>
 	<script src="/js/vue.js"></script>
 	<script>
@@ -108,6 +104,7 @@
                             this.loadedExam = true
 							this.loading = false;
 							this.exams = res.data
+							$("#displayExam").removeClass("d-none");
 						})
 						.catch((e) => {
 							console.log(e.response.error);

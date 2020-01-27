@@ -1,18 +1,10 @@
 <?php
  session_start();  
  require "./db.php";
- if (!isset($_SESSION["email"])) {
-	echo "<script>window.location.href = 'login.php';</script>";
+ if (!isset($_SESSION["email"]) && !isset($_SESSION['status'])) {
+	echo "<script>window.location.href = 'register.php';</script>";
 	exit; 
   } else {
-	  if ($_SESSION['role'] == 1) {
-		echo "<script>window.location.href = '/admin/dashboard.php';</script>";
-		exit; 
-	  }
-	  if ($_SESSION["verified"] == true) {
-		echo "<script>window.location.href = 'dashboard.php';</script>";
-		exit; 
-	  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>UpTime Tech <?php echo $_SESSION['role']; ?></title>
+	<title>UpTime Tech</title>
 	<link href="/css/styles.css" rel="stylesheet" />
 	<link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
 	<script data-search-pseudo-elements defer
@@ -41,7 +33,7 @@
 <body class="" style="background: #d6dbdf;">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container">
-			<a class="navbar-brand" href="#">IMAGE CAPTURING</a>
+			<a class="navbar-brand" href="#">PRE - CAPTURING</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -61,7 +53,7 @@
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
 			<main>
-				<div class="container">
+				<div class="container" id="open-capture">
 					<div class="row justify-content-left mt-1">
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<div class="card shadow-lg border-0 rounded-lg">
@@ -73,12 +65,10 @@
 										<div class="col-md-3 offset-md-1">
 											<button id="snap" class="btn btn-sm btn-dark btn-block">CAPTURE</button>
 										</div>
-										<div class="col-md-4">
-	  										<p class="text-danger font-weight-bold">Note: 3 Max Trials.</p>
-										</div>
-										<div class="col-md-2">
-	  										<h5 id="no-of-fails" class="text-primary"></h5>
-										</div>
+                                        <div class="col-md-3">
+											<button id="submit" class="btn btn-sm btn-dark btn-block">SUBMIT</button>
+                                        
+                                        </div>
 									</div>
 								</div>
 							</div>
@@ -92,10 +82,11 @@
 									<p class="card-text"><span id="user"></span></p>
 								</div>
                             </div>
-                            <div class="mt-2 bg-light" style="width: 18rem;">
-                                <p class="text-primary font-weight-bold">Welcome , <?php echo $_SESSION["fullname"]; ?><br>
-                                Please, Verify your Identity</p>
+                            <div class="mt-2 bg-light" style="width: 18rem;" id="logged-success">
+                                <p class="text-primary font-weight-bold">Welcome , <span id="loggedUser"><?php echo $_SESSION["email"]; ?></span><br>
+                                Please, Upload your Image</p>
                             </div>
+                            <small class="text-success font-weight-bold" id="success-msg"></small>
                         </div>
 					</div>
 				</div>
@@ -120,8 +111,8 @@
 	<script src="/js/jquery.js" crossorigin="anonymous"></script>
 	<script src="/js/boostrap.js" crossorigin="anonymous"></script>
 	<script src="/js/scripts.js"></script>
-	<script src="js/capture.js"></script>
+	<script src="js/pre-capture.js"></script>
 </body>
 
 </html>
-	<?php } ?>
+<?php } ?>

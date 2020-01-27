@@ -3,30 +3,22 @@
 		<div class="sb-sidenav-menu">
 			<div class="nav accordion" id="accordionSidenav">
 				<div class="sb-sidenav-menu-heading"></div>
-				<a class="nav-link" href="/dashboard.php">
+				<a class="nav-link" href="/admin/dashboard.php">
 					<div class="sb-nav-link-icon"><i data-feather="activity"></i></div>
 					Dashboard
 				</a>
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
-					aria-expanded="false" aria-controls="collapseLayouts">
-					<div class="sb-nav-link-icon"><i data-feather="layout"></i></div>
-					Exams
-					<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-				</a>
-				<div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
-					<nav class="sb-sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-						<a class="nav-link" href="/exams/index.php">Available</a><a class="nav-link" href="#">Upcoming</a><a
-							class="nav-link" href="#">Cancelled</a>
-					</nav>
-				</div>
 
-				<a class="nav-link" href="/grades.php">
+				<a class="nav-link" href="/admin/students.php">
 					<div class="sb-nav-link-icon"><i data-feather="layout"></i></div>
-					Grades
+					Students
 				</a>
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="/admin/courses.php">
 					<div class="sb-nav-link-icon"><i data-feather="user"></i></div>
-					Profile
+					Courses
+				</a>
+				<a class="nav-link d-none" href="/admin/questions.php">
+					<div class="sb-nav-link-icon"><i data-feather="user"></i></div>
+					Questions
 				</a>
 				<a class="nav-link" href="/logout.php">
 					<div class="sb-nav-link-icon"><i data-feather="power"></i></div>

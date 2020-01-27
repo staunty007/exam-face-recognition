@@ -1,4 +1,11 @@
 <?php
 session_start();
-session_destroy();
-header("location: login.php");
+
+if($_SESSION['role'] == 1) {
+    header("location: admin/login.php");
+    session_destroy();
+} else {
+    header("location: login.php");
+    session_destroy();
+
+}
